@@ -26,7 +26,7 @@
 #'
 #' @examples
 #' 
-#' data <- read_WEXTOR(""https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv")
+#' data <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv")
 #' 
 #' # If you don't need the validation variable, try
 #' data_noval <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv",

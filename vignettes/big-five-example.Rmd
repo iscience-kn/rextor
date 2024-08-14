@@ -1,0 +1,29 @@
+---
+title: "Big Five Example - BiFiX"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Big Five Example - BiFiX}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# build_rmd("vignettes/big-five-example.Rmd")
+```
+
+```{r setup}
+library(rextor)
+```
+
+In this vignette, you will get a complete Walkthrough of how to use `rextor` for your own data analysis.
+We will use Open Source data on Big Five personality traits, available from the iScience Konstanz account on GitHub: [https://github.com/iscience-kn/BiFiX](https://github.com/iscience-kn/BiFiX).
+
+STAY TUNED! 
+
+## Step 1: Reading in the Data
+
+

@@ -31,3 +31,12 @@ This function prepares the WEXTOR data so that it is readable by both R and you 
 It will give you your original data and also make the start and end time of each participation easier to read and work with later
 (by default, WEXTOR will return these values as date and time separately, cluttering your dataset).
 }
+\examples{
+
+data <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv")
+
+# If you don't need the validation variable, try
+data_noval <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv",
+                          keep_validation = FALSE)
+
+}
