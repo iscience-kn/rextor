@@ -1,0 +1,9 @@
+pandoc: 3.1.11
+pkgdown: 2.1.0
+pkgdown_sha: ~
+articles:
+  big-five-example: big-five-example.html
+last_built: 2024-08-14T13:16Z
+urls:
+  reference: https://iscience-kn.github.io/rextor/reference
+  article: https://iscience-kn.github.io/rextor/articles
