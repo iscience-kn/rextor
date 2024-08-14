@@ -1,0 +1,11 @@
+Package: REXTOR
+Title: Prepare WEXTOR Data Easily
+Version: 0.0.0.9000
+Authors@R: 
+    person("Anni Tave", "Overlander", , "annika-tave.overlander@uni-konstanz.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0006-8373-4086"))
+Description: Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu).
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
