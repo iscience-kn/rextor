@@ -1,51 +1,43 @@
-# Definition of the scale_color_ipea function
-#' Title
+#' Coloring Scale for Data Visualization
+#' 
+#' This scale is very versatile and powerful. It offers several color palettes to choose from and automatically recognizes whether to use
+#' a discrete or continuous scale depending on the data type of the mapping object.
+#' It can also be used for both `color` and `fill` aesthetics by defining `aesthetic` accordingly directly inside the function!
 #'
-#' @param pal 
-#' @param direction 
-#' @param aesthetic 
+#' @param pal Color palette. Use either numbers from 1 to X or one of the names: `'arby'`, `'cute'`...
+#' @param direction Direction of the color palette. Keep blank or use 1 for the default direction or use -1 to reverse the colors.
+#' @param aesthetic Which aesthetic to use the scale on; either `color` or `fill`, defaults to `color`.
 #' @param ... 
 #'
 #' @import ggplot2
-#' @return
+#' @return `ggplot` plot object
+#' 
 #' @export
 #'
 #' @examples
-scale_color_cus <- function(pal =  "cute",
+#' ggplot(iris, aes(Species, Petal.Width, color = Petal.Width)) + geom_jitter() + theme_wob() + scale_rextor()
+#' 
+scale_rextor <- function(pal =  "cute",
                             direction = 1,
                             aesthetic = "color",
-                            # ,
-                            # decimal.mark = ".",
-                            # barheight = NULL, barwidth = NULL,
-                            # title.hjust = NULL, label.hjust = NULL,
                             ...) {
   
   structure(list(pal = pal, direction = direction,
                  aesthetic = aesthetic,
-                 # decimal.mark = decimal.mark, barheight = barheight, barwidth = barwidth,
-                 # title.hjust = title.hjust, label.hjust = label.hjust,
-                 ...), class = "scale_cus_color")
+                 ...), class = "dino_scale")
 }
 
 #' @export
-#' @method ggplot_add scale_cus_color
-# Definition of the ggplot_add.scale_ipea_color method
-ggplot_add.scale_cus_color <- function(object, plot, object_name, ...){
+#' @method ggplot_add dino_scale
+# Definition of the ggplot_add.dino_scale method
+ggplot_add.dino_scale <- function(object, plot, object_name, ...){
   
   # Set arguments
   args <- object
   pal <- args$pal
   direction <- args$direction
   aesthetic <- args$aesthetic
-  # decimal.mark <- args$decimal.mark
-  # barheight <- args$barheight
-  # barwidth <- args$barwidth
-  # title.hjust <- args$title.hjust
-  # label.hjust <- args$label.hjust
-  
-  # Set palette to 'ipea1' if it is not provided, otherwise use the provided value
-  # palette <-  ifelse(missing(palette),'Blue',palette)
-  
+
   # Define rextor custom color scales
   paletteses <- list(
     arby = c("#FF6347", "#FFD700", "#3CB371", "#4682B4", "#4B0082"), 
@@ -60,35 +52,6 @@ ggplot_add.scale_cus_color <- function(object, plot, object_name, ...){
   } else {
     stop("Direction must be either 1 or -1 to reverse the palette.")
   }
-  
-  
-  # if (decimal.mark == ",") {
-  #   # Use comma as decimal mark and dot as thousand separator for labels (Brazilian Portuguese)
-  #   labels = scales::label_comma(decimal.mark = ",", big.mark = ".")
-  # } else if (decimal.mark == "."){
-  #   # Use dot as decimal mark and comma as thousand separator for labels (default)
-  #   labels = scales::label_comma(decimal.mark = ".", big.mark = ",")
-  # } else {
-  #   stop("Decimal.mark argument must be '.' or ','.")
-  # }
-  # 
-  # # Set default arguments
-  # label.hjust = ifelse(is.null(label.hjust),0.5,label.hjust)
-  # title.hjust = ifelse(is.null(title.hjust),0.5,title.hjust)
-  # 
-  # if(is.null(barheight)){
-  #   barheight = NULL
-  # } else{
-  #   barheight = unit(barheight, units = "mm")
-  # }
-  # 
-  # if(is.null(barwidth)){
-  #   barwidth = NULL
-  # } else{
-  #   barwidth = unit(barwidth, units = "mm")
-  # }
-  
-  
   
   # Find the first layer with the defined 'color' aesthetic
   # If ggplot includes aesthetics within geom_* this will recognize the class of the argument based on what is inside it
@@ -131,32 +94,26 @@ ggplot_add.scale_cus_color <- function(object, plot, object_name, ...){
   # Discrete:
   if(!is.numeric(var_evaluated) | unique(var_evaluated) |> length() < 10){
     
-    return(plot + 
-             do.call("discrete_scale",
-                     c(list(aesthetics = aesthetic, 
-                            palette = function(n) {
-                              return(chosen_pal[1:n])
-                            } 
-                            #      ),
-                            # args))
-                     )))
+    scale <- discrete_scale(
+      aesthetics = object$aesthetic,
+      palette = function(n) chosen_pal[1:n],
+      ...
     )
     
 
   } else {
     
     # Define continuous scale
-    return(plot + 
-             do.call("continuous_scale", 
-                     c(list(aesthetics = aesthetic,
-                            palette = scales::gradient_n_pal(chosen_pal))
-                       # , 
-                       # args, 
-                       # guide = "colourbar"
-                     ))
+    scale <- ggplot2::continuous_scale(
+      aesthetics = aesthetic,
+      palette = scales::gradient_n_pal(chosen_pal),
+      ...
     )
-    
+
   }
+  
+  newplot <- plot + scale
+  return(newplot)
   
   
 }
