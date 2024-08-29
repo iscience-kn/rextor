@@ -25,6 +25,7 @@ It offers several options for a dark theme, i.e. dark background with light writ
 data <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv")
 
 # Create any plot
+library(ggplot2)
 ggplot(data, aes(age, color = gender, fill = gender)) + 
   geom_density(alpha = .5) + 
   theme_wob(contrast = "rex")

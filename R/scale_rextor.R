@@ -7,7 +7,7 @@
 #' @param pal Color palette. Use either numbers from 1 to X or one of the names: `'arby'`, `'cute'`...
 #' @param direction Direction of the color palette. Keep blank or use 1 for the default direction or use -1 to reverse the colors.
 #' @param aesthetic Which aesthetic to use the scale on; either `color` or `fill`, defaults to `color`.
-#' @param ... 
+#' @param ... Other common scale parameters.
 #'
 #' @import ggplot2
 #' @return `ggplot` plot object
@@ -15,7 +15,11 @@
 #' @export
 #'
 #' @examples
-#' ggplot(iris, aes(Species, Petal.Width, color = Petal.Width)) + geom_jitter() + theme_wob() + scale_rextor()
+#' library(ggplot2)
+#' ggplot(iris, aes(Species, Petal.Width, color = Petal.Width)) + 
+#' geom_jitter() + 
+#' theme_wob() + 
+#' scale_rextor()
 #' 
 scale_rextor <- function(pal =  "cute",
                             direction = 1,

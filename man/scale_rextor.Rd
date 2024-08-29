@@ -13,7 +13,7 @@ scale_rextor(pal = "cute", direction = 1, aesthetic = "color", ...)
 
 \item{aesthetic}{Which aesthetic to use the scale on; either \code{color} or \code{fill}, defaults to \code{color}.}
 
-\item{...}{}
+\item{...}{Other common scale parameters.}
 }
 \value{
 \code{ggplot} plot object
@@ -24,6 +24,10 @@ a discrete or continuous scale depending on the data type of the mapping object.
 It can also be used for both \code{color} and \code{fill} aesthetics by defining \code{aesthetic} accordingly directly inside the function!
 }
 \examples{
-ggplot(iris, aes(Species, Petal.Width, color = Petal.Width)) + geom_jitter() + theme_wob() + scale_rextor()
+library(ggplot2)
+ggplot(iris, aes(Species, Petal.Width, color = Petal.Width)) + 
+geom_jitter() + 
+theme_wob() + 
+scale_rextor()
 
 }

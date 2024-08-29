@@ -11,9 +11,12 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Imports: 
     dplyr,
-    readr
+    readr,
+    ggplot2
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    rlang,
+    scales
 VignetteBuilder: knitr
 URL: https://iscience-kn.github.io/rextor/
