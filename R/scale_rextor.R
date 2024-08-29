@@ -41,7 +41,8 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
   # Define rextor custom color scales
   paletteses <- list(
     arby = c("#FF6347", "#FFD700", "#3CB371", "#4682B4", "#4B0082"), 
-    cute = c("#BF7389", "#F2D0A9", "#F1E3D3", "#99C1B9", "#E87478")
+    cute = c("#BF7389", "#F2D0A9", "#F1E3D3", "#99C1B9", "#E87478"),
+    wextor = c("#326699", "#53D8FB", "#66C3FF", "#B79FAD", "#B3424F")
   )
   
   # Reverse palette for direction = -1
