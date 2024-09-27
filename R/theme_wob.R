@@ -25,7 +25,6 @@
 #' 
 theme_wob <- function(max_font_size = 14,
                       contrast = "high"){
-  library(ggplot2)
   
   dark <- switch(contrast,
                  "max" = "black",

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rextor🦖
+# rextor🦖 <a href='https://iscience-kn.github.io/rextor/'><img src='man/figures/rextor_logo.png' align="right" height="200" /></a>
 
 rextor is to be an R package to facilitate data preparation for data
 collected on WEXTOR.
