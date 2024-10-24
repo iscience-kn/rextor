@@ -51,13 +51,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="rextor-">rextor🦖 <a href="https://iscience-kn.github.io/rextor/"><img src="reference/figures/rextor_logo.png" align="right" height="138"></a>
+<div class="page-header"><h1 id="rextor-">rextor <a href="https://iscience-kn.github.io/rextor/"><img src="reference/figures/rextor_logo.png" align="right" height="138"></a>
 <a class="anchor" aria-label="anchor" href="#rextor-"></a>
 </h1></div>
-<p>rextor is to be an R package to facilitate data preparation for data collected on WEXTOR.</p>
-<p>🦖 STAY TUNED! 🦖</p>
-<!-- badges: start -->
-<!-- badges: end -->
+<p>rextor is an R package to facilitate data preparation for data collected on WEXTOR. It offers functions to read in the data, help visualize the data with color themes and scales that can help show data with a light-on-dark color scheme, as well as a helper function. Here, the dinosaur Rex will offer some words of wisdom and advice.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -65,6 +62,29 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"iscience-kn/rextor"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="ask-rex-">Ask Rex 🦖<a class="anchor" aria-label="anchor" href="#ask-rex-"></a>
+</h2>
+<p>You can ask Rex for specific topics, such as t.tests and they will ask you to specify the exact type of statistic you are looking for. If you are generally having a hard time, just ask Rex for nothing in particular and they will give you some encouragement to help you to try again!</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://iscience-kn.github.io/rextor/">rextor</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/ask_rex.html">ask_rex</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; No worries, Rex got you!</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="read-in-wextor-data">Read in WEXTOR data<a class="anchor" aria-label="anchor" href="#read-in-wextor-data"></a>
+</h2>
+<p>If you are not yet familiar with <a href="https://wextor.eu" class="external-link">WEXTOR</a>: It is an online experiment building tool which relies on standards of web-based experimentation and methodological best practices.</p>
+<p>That means, generating studies to collect data is easy but analyzing that data in R might be tricky. WEXTOR data comes in a specific csv^comma-separated-values format and figuring out how to properly read that data into R can be difficult to do when starting out your R journey.</p>
+<p>Luckily, with rextor, reading in that data becomes easy as well! We will use an openly available data set on personality data collected in three different conditions^For more information on the data, see <a href="https://github.com/iscience-kn/BiFiX" class="external-link">github.com/iscience-kn/BiFiX</a>. Because some of the automatically generated variable names are not ideal for usage in R, we will also identify any variable name that starts with “.wx.” and have those names start instead with “v_” for “variable”.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="st">"./data/BiFiX_data.csv"</span>, keep_validation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">personality</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/namepref.html">namepref</a></span><span class="op">(</span><span class="va">raw_data</span>, <span class="st">".wx."</span>, <span class="st">"v_"</span><span class="op">)</span></span></code></pre></div>
+<p>This way, the data frame <em>personality</em> is now nicely formatted with useful variable names ready to be edited further. For example, we recommend conducting dropout analysis as a routine part of analyzing online data and offer the <a href="https://iscience-kn.github.io/dropR/" class="external-link">dropR package</a> to facilitate such analyses!</p>
 <!-- ## Example -->
 <!-- This is a basic example which shows you how to solve a common problem: -->
 <!-- ```{r example} -->
