@@ -2,6 +2,7 @@
 
 S3method(ggplot_add,dino_scale)
 export(ask_rex)
+export(namepref)
 export(read_WEXTOR)
 export(scale_rextor)
 export(theme_wob)
