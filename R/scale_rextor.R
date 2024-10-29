@@ -68,8 +68,8 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
         color_var <- plot$layers[[i]]$mapping$fill
       }
       
-      # plot$layers[[i]]$mapping$colour
-      var_evaluated <- rlang::eval_tidy(color_var, plot$layers[[i]]$data)
+      # var_evaluated <- rlang::eval_tidy(color_var, plot$layers[[i]]$data)
+      var_evaluated <- rlang::eval_tidy(color_var, plot$data)
       break
     } else {
       color_var <- NULL
