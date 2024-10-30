@@ -40,7 +40,7 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
   args <- object
   pal <- args$pal
   direction <- args$direction
-  aesthetic <- args$aesthetic
+  aesthetic <- ifelse(args$aesthetic == "fill", "fill", "colour")
 
   # Define rextor custom color scales
   paletteses <- list(
@@ -62,7 +62,7 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
   # If ggplot includes aesthetics within geom_* this will recognize the class of the argument based on what is inside it
   for (i in seq_along(plot$layers)) {
     if (aesthetic %in% names(plot$layers[[i]]$mapping)) {
-      if(aesthetic == "color"){
+      if(aesthetic %in% "colour"){
         color_var <- plot$layers[[i]]$mapping$colour
       } else {
         color_var <- plot$layers[[i]]$mapping$fill
@@ -80,7 +80,7 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
   # If 'color_var' was not found in any layer, check in the base ggplot call
   if (is.null(color_var)) {
     # Depending on the selected aesthetic, color var is defined as color/
-    if(aesthetic == "color"){
+    if(aesthetic == "colour"){
       color_var <- plot$mapping$colour
     } else {
       color_var <-  plot$mapping$fill

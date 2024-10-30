@@ -17,6 +17,8 @@
 #' names(blo)
 #'
 namepref <- function(dataframe, pref_old, pref_new){
+  value <- stripped <- new_names <- NULL
+  
  # pref_old and pref_new must be character strings, dataframe must be a dataframe
   namedf <- tibble::as_tibble(names(dataframe))  |>
     dplyr::mutate(stripped = ifelse(startsWith(value, pref_old), 
