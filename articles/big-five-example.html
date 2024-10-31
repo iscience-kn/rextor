@@ -73,8 +73,67 @@ Konstanz account on GitHub: <a href="https://github.com/iscience-kn/BiFiX" class
 <div class="section level2">
 <h2 id="step-1-reading-in-the-data">Step 1: Reading in the Data<a class="anchor" aria-label="anchor" href="#step-1-reading-in-the-data"></a>
 </h2>
+<p>We will be reading in the data directly from the iScience GitHub
+Account. Make sure to select the raw data file on GitHub or just copy
+the code below.</p>
+<p>In this dataset, we do not need the validation variable. It
+facilitates dropout analysis in some cases (especially in
+one-item-one-screen designs) but here we will focus on other variables
+to clean the data<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;Data cleaning can be a misleading term: It has nothing
+to do with removing data we might not like because it does not fit our
+hypothesis. However, there are some good indicators that e.g. someone
+did not answer truthfully, did not read properly and overall did not
+provide data with good quality. Those cases should be excluded from
+further analyses because they could lead to false results.&lt;/p&gt;"><sup>1</sup></a>. In the first step, we will read in the
+WEXTOR based data and assign in to a variable named “raw”, that will
+become our data frame.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/iscience-kn/BiFiX/refs/heads/main/data/BiFiX_data.csv"</span>,</span>
+<span>                    keep_validation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="step-2-data-cleaning">Step 2: Data Cleaning<a class="anchor" aria-label="anchor" href="#step-2-data-cleaning"></a>
+</h2>
+<p>Great! We now have our empirical data in R, ready to be worked with.
+But there are some things which are not yet ideal, so will use some more
+<code>rextor</code> functions to make our lives easier.</p>
+<p>When you open up the data and look at it, you might notice that the
+first variables in the data, which are automatically recorded server
+variables have the prefix “.wx.”. In R, we generally want our variable
+names to start with a letter for easy access, so we will use the
+<code>namepref</code> function (for variable <strong>name
+pref</strong>ix) to change that to “v_”. Notice that this function will
+not add that prefix to the variables that were deliberately named by
+someone in WEXTOR. It will only change those variable names that
+actually have the old prefix that you specify as shown.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/namepref.html">namepref</a></span><span class="op">(</span><span class="va">raw</span>, pref_old <span class="op">=</span> <span class="st">".wx."</span>, pref_new <span class="op">=</span> <span class="st">"v_"</span><span class="op">)</span></span></code></pre></div>
+<p>We will also perform a “seriousness check” and filter out data of
+anyone who did not confirm they want to participate seriously. This has
+proven to improve data quality.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="pipe-it-all-together">Pipe it all together<a class="anchor" aria-label="anchor" href="#pipe-it-all-together"></a>
+</h2>
+<p>When preparing data for further analyses it makes sense to have an
+unchanged raw version of the data in R and then save any changes in a
+new data frame. However, in order to avoid situations like above with
+<code>data1</code>, <code>data2</code> etc., you might want to use pipes
+to perform several data preparation steps in one go. Since version 4.1.0
+R offers a native pipe that looks like this: <code>|&gt;</code>. It
+allows you to take the output from previous functions as the first input
+of the next function and thus create a workflow pipeline that is easily
+adjustable and usually very efficient and clear to read.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">final_data</span> <span class="op">&lt;-</span> <span class="va">raw</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/namepref.html">namepref</a></span><span class="op">(</span>pref_old <span class="op">=</span> <span class="st">".wx."</span>, pref_new <span class="op">=</span> <span class="st">"v_"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
