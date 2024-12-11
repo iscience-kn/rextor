@@ -28,7 +28,7 @@ theme_wob <- function(max_font_size = 14,
   
   dark <- switch(contrast,
                  "max" = "black",
-                 "high" = "black",
+                 "high" = "#191919",
                  "medium" = "#312D2A",
                  "low" = "#272D2D",
                  "pink" = "#210B2C",
