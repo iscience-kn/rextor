@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   big-five-example: big-five-example.html
-last_built: 2024-10-31T11:14Z
+last_built: 2024-12-11T08:42Z
 urls:
   reference: https://iscience-kn.github.io/rextor/reference
   article: https://iscience-kn.github.io/rextor/articles
