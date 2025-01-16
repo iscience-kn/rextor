@@ -100,17 +100,27 @@ But there are some things which are not yet ideal, so will use some more
 <p>When you open up the data and look at it, you might notice that the
 first variables in the data, which are automatically recorded server
 variables have the prefix “.wx.”. In R, we generally want our variable
-names to start with a letter for easy access, so we will use the
+names to start with a letter for easy access, so we can either use the
 <code>namepref</code> function (for variable <strong>name
 pref</strong>ix) to change that to “v_”. Notice that this function will
 not add that prefix to the variables that were deliberately named by
-someone in WEXTOR. It will only change those variable names that
-actually have the old prefix that you specify as shown.</p>
+someone in WEXTOR. Another option is to remove server-generated variable
+prefixes altogether, which is the option we will choose here. It will
+only change those variable names that actually have the old prefix that
+you specify as shown.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/namepref.html">namepref</a></span><span class="op">(</span><span class="va">raw</span>, pref_old <span class="op">=</span> <span class="st">".wx."</span>, pref_new <span class="op">=</span> <span class="st">"v_"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removepref.html">removepref</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span> <span class="co"># namepref(raw, ".wx.", "v_")</span></span></code></pre></div>
 <p>We will also perform a “seriousness check” and filter out data of
 anyone who did not confirm they want to participate seriously. This has
 proven to improve data quality.</p>
+<p>CAVE: With this step you will remove likely remove a lot of your data
+so make sure you always have a safety copy of the original data. I
+recommend keeping the <em>raw</em> dataset in your R environment while
+you prepare your data so you can go back and repeat or adjust any step
+whenever necessary. That way you can also later look at every row of
+data in your raw data that was removed in later steps and manually check
+if that filtering was correct or if you need to add some of the data
+back into your frame.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
 </div>
