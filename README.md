@@ -53,13 +53,17 @@ use an openly available data set on personality data collected in three
 different conditions^For more information on the data, see
 [github.com/iscience-kn/BiFiX](https://github.com/iscience-kn/BiFiX).
 Because some of the automatically generated variable names are not ideal
-for usage in R, we will also identify any variable name that starts with
+for usage in R, we can also identify any variable name that starts with
 “.wx.” and have those names start instead with “v\_” for “variable”.
+Another option is to remove those prefixes altogether to be left with
+just easily legible variable names, which we will do.
 
 ``` r
-raw_data <- read_WEXTOR("./data/BiFiX_data.csv", keep_validation = FALSE)
+raw_data <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/BiFiX/refs/heads/main/data/BiFiX_data.csv", 
+                        keep_validation = FALSE)
 
-personality <- namepref(raw_data, ".wx.", "v_")
+# personality <- namepref(raw_data, ".wx.", "v_")
+personality <- removepref(raw_data)
 ```
 
 This way, the data frame *personality* is now nicely formatted with
