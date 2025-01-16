@@ -17,7 +17,7 @@ namepref(dataframe, pref_old, pref_new)
 Returns dataframe with those variables renamed that start with the old prefix.
 }
 \description{
-This function strips the old prefix from the variable names of dataframe.
+This function strips the old prefix from the variable names of the dataframe.
 It then adds the new prefix where the old one was and changes the dataframe's names to the new ones.
 }
 \examples{

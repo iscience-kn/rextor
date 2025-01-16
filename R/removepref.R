@@ -6,7 +6,7 @@
 #'
 #' @param dataframe A dataframe, usefully containing variables that have the server prefix ".wx.#."
 #'
-#' @return Returns dataframe with those variables renamed that start with the old prefix.
+#' @returns  Returns dataframe with those variables renamed that start with the old prefix.
 #' @export
 #'
 #' @examples
@@ -14,13 +14,13 @@
 #' blu <- removepref(bli)
 #' names(bli)
 #' names(blu)
-#'
+#' 
 removepref <- function(dataframe){
   value <- stripped <- new_names <- NULL
   
   pref_old <- ".wx.\\d+."
   
- # dataframe must be a dataframe
+  # dataframe must be a dataframe
   namedf <- tibble::as_tibble(names(dataframe))  |>
     dplyr::mutate(stripped = ifelse(grepl(pref_old, value),
                                     substr(value, 7, nchar(value)),
@@ -28,8 +28,8 @@ removepref <- function(dataframe){
                   new_names = ifelse(startsWith(stripped, ".wx."),
                                      substr(stripped, 5, nchar(stripped)),
                                      stripped)
-                  )
-
+    )
+  
   names(dataframe) <- namedf |> dplyr::pull(new_names)
   return(dataframe)
 }
