@@ -54,7 +54,6 @@ It will only change those variable names that actually have the old prefix that 
 
 ```{r}
 data <- removepref(raw) # namepref(raw, ".wx.", "v_")
-
 ```
 
 We will also perform a "seriousness check" and filter out data of anyone who did not confirm they want to participate seriously.
@@ -78,6 +77,6 @@ It allows you to take the output from previous functions as the first input of t
 
 ```{r}
 final_data <- raw |> 
-  namepref(pref_old = ".wx.", pref_new = "v_") |> 
+  removepref() |> 
   serious_check()
 ```
