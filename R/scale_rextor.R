@@ -21,6 +21,22 @@
 #' theme_wob() + 
 #' scale_rextor()
 #' 
+#' data <- data.frame(Time = rep(c("Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6", "Time 7", "Time 8"), each = 2),
+#' cont = 1:16,
+#' Value = c(8, 5, 10, 3, 8, 5, 10, 3,  8, 5, 10, 3,  8, 5, 10, 3))
+#' 
+#' ggplot(data, aes(x = Time, y = Value, color = Time, fill = Time)) +
+#'   geom_boxplot(alpha = 0.95) +
+#'     theme_wob() +
+#'     scale_rextor(pal = "neon") +
+#'     scale_rextor(pal = "neon", aesthetic = "fill")
+#'     
+#' ggplot(data, aes(x = cont, y = Value, color = cont, fill = cont)) +
+#'   geom_jitter(alpha = 0.8, size = 8) +
+#'   theme_minimal() +
+#'   scale_rextor(pal = "wextor") +
+#'   scale_rextor(pal = "wextor", aesthetic = "fill")
+#' 
 scale_rextor <- function(pal =  "cute",
                             direction = 1,
                             aesthetic = "color",
@@ -44,9 +60,15 @@ ggplot_add.dino_scale <- function(object, plot, object_name, ...){
 
   # Define rextor custom color scales
   paletteses <- list(
-    arby = c("#FF6347", "#FFD700", "#3CB371", "#4682B4", "#4B0082"), 
-    cute = c("#BF7389", "#F2D0A9", "#F1E3D3", "#99C1B9", "#E87478"),
-    wextor = c("#326699", "#53D8FB", "#66C3FF", "#B79FAD", "#B3424F") #870058-c97f54-ffeccc-c8d6af-104547-ed1c24
+    arby = c("#FC4A2B", "#FE9116", "#FFD700", "#3CB371", "#4682B4", "#5F3BA5", "#4B0082"), 
+    cute = c("#BF7389", "#F2D0A9", "#D79B86", "#99C1B9", "#E87478"),
+    wextor = c("#326699", "#53D8FB", "#66C3FF", "#254CA7", "#B79FAD", "#B3424F", "#901137", "#7F0000"), 
+    dualtone = c("#870058",  "#E65F5C", "#c8d6af", "#104547","#c97f54", "#ed1c24"),
+    colorful = c("#750400", "#f7ad00", "#58015e", "#0006b8", "#00d9ce", "#16ab31", "#eb6eb7", "#d16c00"), 
+    protanomaly = c("#6E2c4d", "#cd8b5c", "#ccae88", "#cad1b3", "#193346", "#c66123"), 
+    forest = c("#6C464F", "#475B52", "#226F54", "#87C38F","#656839", "#F4F0BB", "#9C8D6D", "#43291F"), 
+    hadestown = c("#d26c01", "#cfa362", "#991400", "#fd3122", "#C1B397", "#654F3C", "#85604D", "#dbc191"), 
+    neon = c("#FFBB00", "#98CE00", "#16E0BD", "#0006b8", "#8B08A0",  "#D11150", "#F72C25", "#FF7100")
   )
   
   # Reverse palette for direction = -1
