@@ -2,6 +2,8 @@
 
 S3method(ggplot_add,dino_scale)
 export(ask_rex)
+export(getmode)
+export(getperc)
 export(informed_constent)
 export(namepref)
 export(namepref0)
