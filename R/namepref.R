@@ -31,3 +31,31 @@ namepref <- function(dataframe, pref_old, pref_new){
   names(dataframe) <- namedf |> dplyr::pull(new_names)
   return(dataframe)
 }
+
+
+#' Add variable name prefix (without substitution)
+#'
+#' This function adds the new prefix and changes the dataframe's names to the new ones.
+#'
+#' @param dataframe A dataframe
+#' @param pref_new New prefix character to add to all variable namess in the dataframe have
+#'
+#' @return Returns dataframe with all variables renamed to start with the new prefix.
+#' @export
+#'
+#' @examples
+#' bla <- tibble::tibble(x_ar = 1:5, y_ar = 6:10)
+#' blo <- namepref(bla, "var")
+#' names(bla)
+#' names(blo)
+#'
+namepref0 <- function(dataframe, pref_new){
+  value <- new_names <- NULL
+  
+  # pref_new must be a character string, dataframe must be a dataframe
+  namedf <- tibble::as_tibble(names(dataframe))  |>
+    dplyr::mutate(new_names = paste0(pref_new, value))
+  
+  names(dataframe) <- namedf |> dplyr::pull(new_names)
+  return(dataframe)
+}
