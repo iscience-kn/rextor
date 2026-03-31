@@ -1,0 +1,90 @@
+# Big Five Example - BiFiX
+
+In this vignette, you will get a complete Walkthrough of how to use
+`rextor` for your own data analysis. We will use Open Source data on Big
+Five personality traits, available from the iScience Konstanz account on
+GitHub: <https://github.com/iscience-kn/BiFiX>.
+
+## Step 1: Reading in the Data
+
+We will be reading in the data directly from the iScience GitHub
+Account. Make sure to select the raw data file on GitHub or just copy
+the code below.
+
+In this dataset, we do not need the validation variable. It facilitates
+dropout analysis in some cases (especially in one-item-one-screen
+designs) but here we will focus on other variables to clean the
+data[¹](#fn1). In the first step, we will read in the WEXTOR based data
+and assign in to a variable named “raw”, that will become our data
+frame.
+
+``` r
+raw <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv",
+                    keep_validation = FALSE)
+```
+
+## Step 2: Data Cleaning
+
+Great! We now have our empirical data in R, ready to be worked with. But
+there are some things which are not yet ideal, so will use some more
+`rextor` functions to make our lives easier.
+
+When you open up the data and look at it, you might notice that the
+first variables in the data, which are automatically recorded server
+variables have the prefix “.wx.”. In R, we generally want our variable
+names to start with a letter for easy access, so we can either use the
+`namepref` function (for variable **name pref**ix) to change that to
+“v\_”. Notice that this function will not add that prefix to the
+variables that were deliberately named by someone in WEXTOR. Another
+option is to remove server-generated variable prefixes altogether, which
+is the option we will choose here. It will only change those variable
+names that actually have the old prefix that you specify as shown.
+
+``` r
+data <- removepref(raw) # namepref(raw, ".wx.", "v_")
+```
+
+We will also perform a “seriousness check” and filter out data of anyone
+who did not confirm they want to participate seriously. This has proven
+to improve data quality.
+
+CAVE: With this step you will remove likely remove a lot of your data so
+make sure you always have a safety copy of the original data. I
+recommend keeping the *raw* dataset in your R environment while you
+prepare your data so you can go back and repeat or adjust any step
+whenever necessary. That way you can also later look at every row of
+data in your raw data that was removed in later steps and manually check
+if that filtering was correct or if you need to add some of the data
+back into your frame.
+
+``` r
+data2 <- serious_check(data)
+```
+
+## Pipe it all together
+
+When preparing data for further analyses it makes sense to have an
+unchanged raw version of the data in R and then save any changes in a
+new data frame. However, in order to avoid situations like above with
+`data1`, `data2` etc., you might want to use pipes to perform several
+data preparation steps in one go. Since version 4.1.0 R offers a native
+pipe that looks like this: `|>`. It allows you to take the output from
+previous functions as the first input of the next function and thus
+create a workflow pipeline that is easily adjustable and usually very
+efficient and clear to read.
+
+``` r
+final_data <- raw |> 
+  removepref() |> 
+  serious_check()
+```
+
+------------------------------------------------------------------------
+
+1.  Data cleaning can be a misleading term: It has nothing to do with
+    removing data we might not like because it does not fit our
+    hypothesis. However, there are some good indicators that
+    e.g. someone did not answer truthfully, did not read properly and
+    overall did not provide data with good quality. Those cases should
+    be excluded from further analyses because they could lead to false
+    results.
