@@ -21,9 +21,11 @@
 #' theme_wob() + 
 #' scale_rextor()
 #' 
-#' data <- data.frame(Time = rep(c("Time 1", "Time 2", "Time 3", "Time 4", "Time 5", "Time 6", "Time 7", "Time 8"), each = 2),
-#' cont = 1:16,
-#' Value = c(8, 5, 10, 3, 8, 5, 10, 3,  8, 5, 10, 3,  8, 5, 10, 3))
+#' data <- data.frame(Time = rep(c("Time 1", "Time 2", "Time 3", "Time 4", 
+#'                                 "Time 5", "Time 6", "Time 7", "Time 8"), 
+#'                                 each = 2),
+#'                                 cont = 1:16,
+#'                                 Value = c(8, 5, 10, 3, 8, 5, 10, 3,  8, 5, 10, 3,  8, 5, 10, 3))
 #' 
 #' ggplot(data, aes(x = Time, y = Value, color = Time, fill = Time)) +
 #'   geom_boxplot(alpha = 0.95) +

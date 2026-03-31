@@ -7,17 +7,19 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 # build_rmd("vignettes/big-five-example.Rmd")
-```
 
-```{r setup}
 library(rextor)
 ```
+
+<!-- # ```{r setup} -->
+<!-- # library(rextor) -->
+<!-- # ``` -->
 
 In this vignette, you will get a complete Walkthrough of how to use `rextor` for your own data analysis.
 We will use Open Source data on Big Five personality traits, available from the iScience Konstanz account on GitHub: [https://github.com/iscience-kn/BiFiX](https://github.com/iscience-kn/BiFiX).
@@ -33,9 +35,10 @@ In the first step, we will read in the WEXTOR based data and assign in to a vari
 
 [^dc]: Data cleaning can be a misleading term: It has nothing to do with removing data we might not like because it does not fit our hypothesis. However, there are some good indicators that e.g. someone did not answer truthfully, did not read properly and overall did not provide data with good quality. Those cases should be excluded from further analyses because they could lead to false results.
 
-```{r}
-raw <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/BiFiX/refs/heads/main/data/BiFiX_data.csv",
+```{r read-in}
+raw <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv",
                     keep_validation = FALSE)
+
 ```
 
 ## Step 2: Data Cleaning

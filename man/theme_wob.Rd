@@ -22,7 +22,7 @@ It offers several options for a dark theme, i.e. dark background with light writ
 }
 \examples{
 # Load the data
-data <- read_WEXTOR("https://github.com/iscience-kn/BiFiX/raw/main/data/BiFiX_data.csv")
+data<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv")
 
 # Create any plot
 library(ggplot2)
