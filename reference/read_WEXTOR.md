@@ -47,9 +47,18 @@ separately, cluttering your dataset).
 ## Examples
 
 ``` r
-data<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv")
+
+url<-"https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv"
+data <- read_WEXTOR(url)
+#> Warning: Failed to open 'https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv': The requested URL returned error: 404
+#> Error: cannot open the connection
+
+# OR, a bit simpler
+data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 
 # If you don't need the validation variable, try
-data_noval<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv",
-                          keep_validation = FALSE)
+data_noval<-read_WEXTOR(url,
+                       keep_validation = FALSE)
+#> Warning: Failed to open 'https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv': The requested URL returned error: 404
+#> Error: cannot open the connection
 ```

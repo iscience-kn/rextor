@@ -31,7 +31,7 @@ Plot theme.
 
 ``` r
 # Load the data
-data<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv")
+data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 
 # Create any plot
 library(ggplot2)

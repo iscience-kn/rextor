@@ -14,12 +14,12 @@ the code below.
 In this dataset, we do not need the validation variable. It facilitates
 dropout analysis in some cases (especially in one-item-one-screen
 designs) but here we will focus on other variables to clean the
-data[¹](#fn1). In the first step, we will read in the WEXTOR based data
-and assign in to a variable named “raw”, that will become our data
-frame.
+data[^1]. In the first step, we will read in the WEXTOR based data and
+assign in to a variable named “raw”, that will become our data frame.
 
 ``` r
-raw <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv",
+
+raw <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"),
                     keep_validation = FALSE)
 ```
 
@@ -41,8 +41,11 @@ is the option we will choose here. It will only change those variable
 names that actually have the old prefix that you specify as shown.
 
 ``` r
+
 data <- removepref(raw) # namepref(raw, ".wx.", "v_")
 ```
+
+### Seriousness check
 
 We will also perform a “seriousness check” and filter out data of anyone
 who did not confirm they want to participate seriously. This has proven
@@ -52,13 +55,51 @@ CAVE: With this step you will remove likely remove a lot of your data so
 make sure you always have a safety copy of the original data. I
 recommend keeping the *raw* dataset in your R environment while you
 prepare your data so you can go back and repeat or adjust any step
-whenever necessary. That way you can also later look at every row of
-data in your raw data that was removed in later steps and manually check
-if that filtering was correct or if you need to add some of the data
-back into your frame.
+whenever necessary. That way you can also look at every row of data in
+your raw data that was removed in later steps and manually check if that
+filtering was correct or if you need to add some of the data back in.
 
 ``` r
+
 data2 <- serious_check(data)
+```
+
+### Plausibility check
+
+Similar to the seriousness check, **plausibility checks are essential**
+in online studies to ensure data quality because researchers have less
+control over participants’ environments and behavior than in lab
+settings. Responses may include inattentive participants, bots, or
+repeated submissions, all of which can bias results if left unchecked.
+Two particularly effective starting points are **session length** and
+**IP-based duplicate checks**. Extremely short or long session durations
+can indicate careless responding or technical issues, while repeated IP
+addresses may signal multiple submissions from the same source.
+Together, these checks provide a quick, low-threshold way to flag
+clearly problematic cases before applying more fine-grained data
+screening procedures. With `rextor`, the checks described above can be
+performed separately (as shown below in the commented out part) or in
+one meta-function. Possibly implausible cases will be flagged as such so
+the researcher can make an informed decision on whether to keep these
+cases or exclude them for better data quality. As the `BiFiX` dataset
+does not include real IP adresses for data security reasons, we will add
+simulated ones to show the functionality of the IP check:
+
+``` r
+
+# Add random numbers to act as simulated IP addresses
+data2$ip <- sample(1:1000, nrow(data2), replace = TRUE)
+
+# Perform separate checks
+# data3 <- sess_length_check(data2, 
+#                      min_pages = 6)
+# data3 <- ip_check(data3)
+
+# Perform overall plausibility check
+data3 <- plausicheck(data2, 
+                     min_pages = 6,
+                     check_sess_length = TRUE,
+                     check_ip = TRUE)
 ```
 
 ## Pipe it all together
@@ -67,21 +108,23 @@ When preparing data for further analyses it makes sense to have an
 unchanged raw version of the data in R and then save any changes in a
 new data frame. However, in order to avoid situations like above with
 `data1`, `data2` etc., you might want to use pipes to perform several
-data preparation steps in one go. Since version 4.1.0 R offers a native
+data preparation steps in one go. Since version 4.1.0, R offers a native
 pipe that looks like this: `|>`. It allows you to take the output from
 previous functions as the first input of the next function and thus
 create a workflow pipeline that is easily adjustable and usually very
-efficient and clear to read.
+efficient and clear to read. To avoid having to add simulated IPs here
+again, we will skip this check but still perform the meta function
+`plausicheck` to get the overall plausibilty variable added to the data.
 
 ``` r
+
 final_data <- raw |> 
   removepref() |> 
-  serious_check()
+  serious_check() |> 
+  plausicheck(min_pages = 6, check_sess_length = TRUE, check_ip = FALSE)
 ```
 
-------------------------------------------------------------------------
-
-1.  Data cleaning can be a misleading term: It has nothing to do with
+[^1]: Data cleaning can be a misleading term: It has nothing to do with
     removing data we might not like because it does not fit our
     hypothesis. However, there are some good indicators that
     e.g. someone did not answer truthfully, did not read properly and

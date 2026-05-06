@@ -11,8 +11,8 @@
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Prepare WEXTOR Data Easily">
-<meta name="description" content="Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu).">
-<meta property="og:description" content="Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu).">
+<meta name="description" content="Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu). Perform plausibility and other checks and make use of cool color palettes and themes for data visualization!">
+<meta property="og:description" content="Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu). Perform plausibility and other checks and make use of cool color palettes and themes for data visualization!">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">rextor</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.0000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"iscience-kn/rextor"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="ask-rex-">Ask Rex 🦖<a class="anchor" aria-label="anchor" href="#ask-rex-"></a>
+<h2 id="ask-rex-t-rex">Ask Rex 🦖<a class="anchor" aria-label="anchor" href="#ask-rex-t-rex"></a>
 </h2>
 <p>You can ask Rex for specific topics, such as t.tests and they will ask you to specify the exact type of statistic you are looking for. If you are generally having a hard time, just ask Rex for nothing in particular and they will give you some encouragement to help you to try again!</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -73,16 +73,23 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/ask_rex.html">ask_rex</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; No worries, Rex got you!</span></span></code></pre></div>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                                      __</span></span>
+<span><span class="co">#&gt;                                     / _)</span></span>
+<span><span class="co">#&gt;                              .-^^^-/ /</span></span>
+<span><span class="co">#&gt;                           __/       /</span></span>
+<span><span class="co">#&gt;                           &lt;__.|_|-|_|</span></span>
+<span><span class="co">#&gt;                           </span></span>
+<span><span class="co">#&gt;                           Small progress beats perfect code.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="read-in-wextor-data">Read in WEXTOR data<a class="anchor" aria-label="anchor" href="#read-in-wextor-data"></a>
 </h2>
 <p>If you are not yet familiar with <a href="https://wextor.eu" class="external-link">WEXTOR</a>: It is an online experiment building tool which relies on standards of web-based experimentation and methodological best practices.</p>
 <p>That means, generating studies to collect data is easy but analyzing that data in R might be tricky. WEXTOR data comes in a specific csv^comma-separated-values format and figuring out how to properly read that data into R can be difficult to do when starting out your R journey.</p>
-<p>Luckily, with rextor, reading in that data becomes easy as well! We will use an openly available data set on personality data collected in three different conditions^For more information on the data, see <a href="https://github.com/iscience-kn/BiFiX" class="external-link">github.com/iscience-kn/BiFiX</a>. Because some of the automatically generated variable names are not ideal for usage in R, we can also identify any variable name that starts with “.wx.” and have those names start instead with “v_” for “variable”. Another option is to remove those prefixes altogether to be left with just easily legible variable names, which we will do.</p>
+<p>Luckily, with rextor, reading in that data becomes easy! We will use an openly available data set on personality data collected in three different conditions^For more information on the data, see <a href="https://github.com/iscience-kn/BiFiX" class="external-link">github.com/iscience-kn/BiFiX</a>. This dataset is also included in the rextor package in the WEXTOR-exported format (without real IP addresses for data anonymization). To read in this data from the package, you need to use the <code><a href="reference/path_to_file.html">path_to_file()</a></code> function as shown below. Because some of the automatically generated variable names are not ideal for usage in R, we can also identify any variable name that starts with “.wx.” and have those names start instead with “v_” for “variable”. Another option is to remove those prefixes altogether to be left with just easily legible variable names, which we will do.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/iscience-kn/BiFiX/refs/heads/main/data/BiFiX_data.csv"</span>, </span>
+<code class="sourceCode R"><span><span class="va">raw_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="fu"><a href="reference/path_to_file.html">path_to_file</a></span><span class="op">(</span><span class="st">"BiFiX_data_raw.csv"</span><span class="op">)</span>, </span>
 <span>                        keep_validation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># personality &lt;- namepref(raw_data, ".wx.", "v_")</span></span>
@@ -109,7 +116,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Anni Tave Overlander <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0006-8373-4086" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Annika Tave Overlander <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0006-8373-4086" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Ulf-Dietrich Reips <br><small class="roles"> Copyright holder, funder </small> <a href="https://orcid.org/0000-0002-1566-4745" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -120,7 +128,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Anni Tave Overlander.</p>
+  <p>Developed by Annika Tave Overlander, Ulf-Dietrich Reips.</p>
 </div>
 
 <div class="pkgdown-footer-right">

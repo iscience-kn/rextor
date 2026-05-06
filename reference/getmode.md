@@ -23,6 +23,7 @@ Returns the mode of v, i.e., the value occurring most often
 ## Examples
 
 ``` r
+
 vec <- c("A", "A", "B")
 getmode(vec)
 #> [1] "A"

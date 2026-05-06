@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">rextor</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.0000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@ further analyses because they could lead to false results.&lt;/p&gt;"><sup>1</su
 WEXTOR based data and assign in to a variable named “raw”, that will
 become our data frame.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="st">"https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv"</span>,</span>
+<code class="sourceCode R"><span><span class="va">raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read_WEXTOR.html">read_WEXTOR</a></span><span class="op">(</span><span class="fu"><a href="../reference/path_to_file.html">path_to_file</a></span><span class="op">(</span><span class="st">"BiFiX_data_raw.csv"</span><span class="op">)</span>,</span>
 <span>                    keep_validation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -110,6 +110,9 @@ only change those variable names that actually have the old prefix that
 you specify as shown.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/removepref.html">removepref</a></span><span class="op">(</span><span class="va">raw</span><span class="op">)</span> <span class="co"># namepref(raw, ".wx.", "v_")</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="seriousness-check">Seriousness check<a class="anchor" aria-label="anchor" href="#seriousness-check"></a>
+</h3>
 <p>We will also perform a “seriousness check” and filter out data of
 anyone who did not confirm they want to participate seriously. This has
 proven to improve data quality.</p>
@@ -117,12 +120,50 @@ proven to improve data quality.</p>
 so make sure you always have a safety copy of the original data. I
 recommend keeping the <em>raw</em> dataset in your R environment while
 you prepare your data so you can go back and repeat or adjust any step
-whenever necessary. That way you can also later look at every row of
-data in your raw data that was removed in later steps and manually check
-if that filtering was correct or if you need to add some of the data
-back into your frame.</p>
+whenever necessary. That way you can also look at every row of data in
+your raw data that was removed in later steps and manually check if that
+filtering was correct or if you need to add some of the data back
+in.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="plausibility-check">Plausibility check<a class="anchor" aria-label="anchor" href="#plausibility-check"></a>
+</h3>
+<p>Similar to the seriousness check, <strong>plausibility checks are
+essential</strong> in online studies to ensure data quality because
+researchers have less control over participants’ environments and
+behavior than in lab settings. Responses may include inattentive
+participants, bots, or repeated submissions, all of which can bias
+results if left unchecked. Two particularly effective starting points
+are <strong>session length</strong> and <strong>IP-based duplicate
+checks</strong>. Extremely short or long session durations can indicate
+careless responding or technical issues, while repeated IP addresses may
+signal multiple submissions from the same source. Together, these checks
+provide a quick, low-threshold way to flag clearly problematic cases
+before applying more fine-grained data screening procedures. With
+<code>rextor</code>, the checks described above can be performed
+separately (as shown below in the commented out part) or in one
+meta-function. Possibly implausible cases will be flagged as such so the
+researcher can make an informed decision on whether to keep these cases
+or exclude them for better data quality. As the <code>BiFiX</code>
+dataset does not include real IP adresses for data security reasons, we
+will add simulated ones to show the functionality of the IP check:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Add random numbers to act as simulated IP addresses</span></span>
+<span><span class="va">data2</span><span class="op">$</span><span class="va">ip</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">1000</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">data2</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Perform separate checks</span></span>
+<span><span class="co"># data3 &lt;- sess_length_check(data2, </span></span>
+<span><span class="co">#                      min_pages = 6)</span></span>
+<span><span class="co"># data3 &lt;- ip_check(data3)</span></span>
+<span></span>
+<span><span class="co"># Perform overall plausibility check</span></span>
+<span><span class="va">data3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plausicheck.html">plausicheck</a></span><span class="op">(</span><span class="va">data2</span>, </span>
+<span>                     min_pages <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>                     check_sess_length <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>                     check_ip <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="pipe-it-all-together">Pipe it all together<a class="anchor" aria-label="anchor" href="#pipe-it-all-together"></a>
@@ -131,15 +172,19 @@ back into your frame.</p>
 unchanged raw version of the data in R and then save any changes in a
 new data frame. However, in order to avoid situations like above with
 <code>data1</code>, <code>data2</code> etc., you might want to use pipes
-to perform several data preparation steps in one go. Since version 4.1.0
-R offers a native pipe that looks like this: <code>|&gt;</code>. It
-allows you to take the output from previous functions as the first input
-of the next function and thus create a workflow pipeline that is easily
-adjustable and usually very efficient and clear to read.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+to perform several data preparation steps in one go. Since version
+4.1.0, R offers a native pipe that looks like this: <code>|&gt;</code>.
+It allows you to take the output from previous functions as the first
+input of the next function and thus create a workflow pipeline that is
+easily adjustable and usually very efficient and clear to read. To avoid
+having to add simulated IPs here again, we will skip this check but
+still perform the meta function <code>plausicheck</code> to get the
+overall plausibilty variable added to the data.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">final_data</span> <span class="op">&lt;-</span> <span class="va">raw</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/removepref.html">removepref</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/serious_check.html">serious_check</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/plausicheck.html">plausicheck</a></span><span class="op">(</span>min_pages <span class="op">=</span> <span class="fl">6</span>, check_sess_length <span class="op">=</span> <span class="cn">TRUE</span>, check_ip <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -149,7 +194,7 @@ adjustable and usually very efficient and clear to read.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Anni Tave Overlander.</p>
+  <p>Developed by Annika Tave Overlander, Ulf-Dietrich Reips.</p>
 </div>
 
 <div class="pkgdown-footer-right">

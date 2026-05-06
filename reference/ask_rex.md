@@ -27,7 +27,14 @@ questions
 ``` r
 # Get motivation
 ask_rex()
-#> You can ask Rex about 'ttest', 'mean' 
+#> 
+#>                                      __
+#>                                     / _)
+#>                              .-^^^-/ /
+#>                           __/       /
+#>                           <__.|_|-|_|
+#>                           
+#>                           Make it work, then make it nice.
 
 # Get specific information
 ask_rex("mean")
