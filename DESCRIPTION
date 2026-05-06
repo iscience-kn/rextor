@@ -1,11 +1,14 @@
 Package: rextor
 Title: Prepare WEXTOR Data Easily
-Version: 0.0.0.9000
-Authors@R: 
-    person("Anni Tave", "Overlander", , "annika-tave.overlander@uni-konstanz.de", role = c("aut", "cre"),
-           comment = c(ORCID = "0009-0006-8373-4086"))
-Description: Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu).
+Version: 0.0.1.0000
+Depends: R (>= 4.1.0)
+Authors@R: c(person("Annika Tave", "Overlander", role = c("aut","cre"), email = "annika-tave.overlander@uni.kn",
+             comment = c(ORCID = "0009-0006-8373-4086")),
+            person("Ulf-Dietrich", "Reips", role = c("cph", "fnd"), 
+              comment = c(ORCID = "0000-0002-1566-4745")))
+Description: Facilitate data preparation for data collected on [WEXTOR](https://wextor.eu). Perform plausibility and other checks and make use of cool color palettes and themes for data visualization!
 License: GPL (>= 3)
+Date: 2026-05-06
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

@@ -33,10 +33,14 @@ It will give you your original data and also make the start and end time of each
 }
 \examples{
 
-data<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv")
+url<-"https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv"
+data <- read_WEXTOR(url)
+
+# OR, a bit simpler
+data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 
 # If you don't need the validation variable, try
-data_noval<-read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv",
-                          keep_validation = FALSE)
+data_noval<-read_WEXTOR(url,
+                       keep_validation = FALSE)
 
 }

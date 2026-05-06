@@ -51,9 +51,8 @@ scale_rextor <- function(pal =  "cute",
 
 #' @export
 #' @method ggplot_add dino_scale
-# Definition of the ggplot_add.dino_scale method
 ggplot_add.dino_scale <- function(object, plot, object_name, ...){
-  
+  # Definition of the ggplot_add.dino_scale method
   # Set arguments
   args <- object
   pal <- args$pal

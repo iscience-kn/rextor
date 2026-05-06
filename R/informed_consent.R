@@ -6,6 +6,8 @@
 #'
 #' @param dataframe A dataframe of data collected with WEXTOR
 #' @param varname character. Variable name of informed consent variable. Defaults to "informedconsent".
+#' 
+#' @importFrom stats na.omit
 #'
 #' @returns Returns data with cases filtered out that did not check the informed constent box
 #' @export

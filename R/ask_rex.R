@@ -40,10 +40,31 @@ ask_rex <- function(topic = "?"){
   }
   else {
     reply <- sample(c("No worries, Rex got you!",
-                      "Your'e doing great.",
+                      "You're doing great.",
                       "Trust the process!",
                       "Honestly, I don't know either.",
-                      "You can ask Rex about 'ttest', 'mean' "), 1)
+                      "If it runs, you're already winning.",
+                      "Confused means you're learning.",
+                      "Every error message is a hint, not an insult.",
+                      "You don't need to understand everything - just the next step.",
+                      "Small progress beats perfect code.",
+                      "If it feels hard, you're doing it right.",
+                      "Copy first, understand second, improve third.",
+                      "One working line > ten perfect ideas.",
+                      "Make it work, then make it nice.",
+                      "If you can explain it, you can code it.",
+                      "You can ask Rex about 'ttest', 'mean'...",
+                      
+                      cat("
+                                     __
+                                    / _)
+                             .-^^^-/ /
+                          __/       /
+                          <__.|_|-|_|
+                          
+                          ")
+                      
+                      ), 1)
   }
   cat(reply)
 }

@@ -33,7 +33,14 @@ library(rextor)
 
 set.seed(1)
 ask_rex()
-#> No worries, Rex got you!
+#> 
+#>                                      __
+#>                                     / _)
+#>                              .-^^^-/ /
+#>                           __/       /
+#>                           <__.|_|-|_|
+#>                           
+#>                           Small progress beats perfect code.
 ```
 
 ## Read in WEXTOR data
@@ -48,18 +55,22 @@ csv^comma-separated-values format and figuring out how to properly read
 that data into R can be difficult to do when starting out your R
 journey.
 
-Luckily, with rextor, reading in that data becomes easy as well! We will
-use an openly available data set on personality data collected in three
+Luckily, with rextor, reading in that data becomes easy! We will use an
+openly available data set on personality data collected in three
 different conditions^For more information on the data, see
 [github.com/iscience-kn/BiFiX](https://github.com/iscience-kn/BiFiX).
-Because some of the automatically generated variable names are not ideal
-for usage in R, we can also identify any variable name that starts with
-“.wx.” and have those names start instead with “v\_” for “variable”.
-Another option is to remove those prefixes altogether to be left with
-just easily legible variable names, which we will do.
+This dataset is also included in the rextor package in the
+WEXTOR-exported format (without real IP addresses for data
+anonymization). To read in this data from the package, you need to use
+the `path_to_file()` function as shown below. Because some of the
+automatically generated variable names are not ideal for usage in R, we
+can also identify any variable name that starts with “.wx.” and have
+those names start instead with “v\_” for “variable”. Another option is
+to remove those prefixes altogether to be left with just easily legible
+variable names, which we will do.
 
 ``` r
-raw_data <- read_WEXTOR("https://raw.githubusercontent.com/iscience-kn/BiFiX/refs/heads/main/data/BiFiX_data.csv", 
+raw_data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"), 
                         keep_validation = FALSE)
 
 # personality <- namepref(raw_data, ".wx.", "v_")

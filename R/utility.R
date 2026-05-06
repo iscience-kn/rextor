@@ -46,3 +46,52 @@ getperc <- function(data, var, val){
   
   round(((table(data[var])/n_data)[[val]])*100, 2) # %>% round(2)
 }
+
+#' Get file path to `BiFiX_data_raw.csv` file
+#'
+#' This function makes the example data from the BiFiX study (submitted for publication in BRM) easy to access.
+#'
+#' @param path Name of file in quotes with extension;
+#' `"BiFiX_data_raw.csv"` will work.
+#' If `NULL`, the example file will be listed.
+#' @export
+#' @examples
+#' path_to_file()
+#' path_to_file("BiFiX_data_raw.csv")
+#' head(read.csv(path_to_file("BiFiX_data_raw.csv")))
+#' @source This function is adapted from `palmerpenguins` (which is adapted from `readxl::readxl_example()`).
+path_to_file <- function(path = NULL) {
+  if (is.null(path)) {
+    dir(system.file("extdata", package = "rextor"))
+  } else {
+    system.file("extdata", path, package = "rextor", mustWork = TRUE)
+  }
+}
+
+
+#' Check whether a plausibility condition is satisfied
+#'
+#' Returns a logical vector indicating whether a given check column equals `"ok"`.
+#' If the column does not exist in the data, all cases are treated as passing.
+#' 
+#' Used inside the `plausicheck()` function.
+#'
+#' @param data A data frame containing plausibility check variables.
+#' @param col A character string specifying the column name to check.
+#'
+#' @returns A logical vector of length `nrow(data)`.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' check_ok(my_data, "check_ip")
+
+#' }
+check_ok <- function(data, col) {
+  if (col %in% names(data)) {
+    data[[col]] == "ok"
+  } else {
+    rep(TRUE, nrow(data))
+  }
+}
