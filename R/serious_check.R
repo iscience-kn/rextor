@@ -12,7 +12,8 @@
 #' @export
 #'
 #' @examples
-#' # See vignette walkthrough
+#' data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
+#' serious_only <- serious_check(data)
 #' 
 serious_check <- function(dataframe, varname = "seriousness", keep = "participate"){
   new <- subset(dataframe, eval(parse(text = varname)) == keep)

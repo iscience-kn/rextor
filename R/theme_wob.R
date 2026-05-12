@@ -6,7 +6,7 @@
 #' @param max_font_size Maximum font size, used for the plot title (other font sizes are automatically
 #'  adjusted accordingly).
 #' @param contrast Character to indicate the choice of color palette depending on the desired contrast. 
-#' Defaults to `"high"`. Should be one of `"max", "high", "medium", "low", "pink" or "rex"`.
+#' Defaults to `"high"`. Should be one of `"max", "high", "medium", "low", "pink"` or `"rex"`.
 #'
 #' @import ggplot2
 #'

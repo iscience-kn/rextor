@@ -22,6 +22,7 @@ If the data comes from WEXTOR with no previous changes to the automatically crea
 you will be able to accept all defaults in this function and simply input the data frame.
 }
 \examples{
-# See vignette walkthrough
+data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
+serious_only <- serious_check(data)
 
 }

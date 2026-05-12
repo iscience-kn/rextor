@@ -21,6 +21,12 @@ You can install the development version of rextor from
 devtools::install_github("iscience-kn/rextor")
 ```
 
+Or the official CRAN version via:
+
+``` r
+install.packages("rextor")
+```
+
 ## Ask Rex 🦖
 
 You can ask Rex for specific topics, such as t.tests and they will ask

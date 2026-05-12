@@ -2,7 +2,7 @@
 % Please edit documentation in R/utility.R
 \name{path_to_file}
 \alias{path_to_file}
-\title{Get file path to \code{BiFiX_data_raw.csv} file}
+\title{Get file path to example data file}
 \source{
 This function is adapted from \code{palmerpenguins} (which is adapted from \code{readxl::readxl_example()}).
 }

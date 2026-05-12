@@ -47,7 +47,7 @@ getperc <- function(data, var, val){
   round(((table(data[var])/n_data)[[val]])*100, 2) # %>% round(2)
 }
 
-#' Get file path to `BiFiX_data_raw.csv` file
+#' Get file path to example data file
 #'
 #' This function makes the example data from the BiFiX study (submitted for publication in BRM) easy to access.
 #'
@@ -86,7 +86,6 @@ path_to_file <- function(path = NULL) {
 #' @examples
 #' \dontrun{
 #' check_ok(my_data, "check_ip")
-
 #' }
 check_ok <- function(data, col) {
   if (col %in% names(data)) {

@@ -1,6 +1,5 @@
 #' Informed Consent Filter
 #' 
-#' 
 #' One of the best practices in data collection is including and informed consent question.
 #' With this function you can automatically filter out rows where participants did not explicitly consent to their data being used.
 #'
@@ -9,10 +8,14 @@
 #' 
 #' @importFrom stats na.omit
 #'
-#' @returns Returns data with cases filtered out that did not check the informed constent box
+#' @returns Returns data with cases filtered out that did not check the informed consent box
 #' @export
+#' @examples
+#' \dontrun{
+#' informed_only <- informed_consent(data) 
+#' }
 #'
-informed_constent <- function(dataframe, varname = "informedconsent"){
+informed_consent <- function(dataframe, varname = "informedconsent"){
   
   new <- dataframe[dataframe[varname] == "checked", ] |> na.omit()
   new

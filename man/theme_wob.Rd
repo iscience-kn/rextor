@@ -11,7 +11,7 @@ theme_wob(max_font_size = 14, contrast = "high")
 adjusted accordingly).}
 
 \item{contrast}{Character to indicate the choice of color palette depending on the desired contrast.
-Defaults to \code{"high"}. Should be one of \verb{"max", "high", "medium", "low", "pink" or "rex"}.}
+Defaults to \code{"high"}. Should be one of \verb{"max", "high", "medium", "low", "pink"} or \code{"rex"}.}
 }
 \value{
 Plot theme.

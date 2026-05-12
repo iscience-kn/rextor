@@ -2,7 +2,7 @@
 % Please edit documentation in R/plausi_checks.R
 \name{ip_check}
 \alias{ip_check}
-\title{Check for duplicate IP addresses in WEXTOR study data}
+\title{Check for duplicate IP addresses}
 \usage{
 ip_check(dataframe)
 }
