@@ -32,5 +32,6 @@ Filtered data
 ## Examples
 
 ``` r
-# See vignette walkthrough
+data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
+serious_only <- serious_check(data)
 ```

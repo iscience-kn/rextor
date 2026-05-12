@@ -1,4 +1,4 @@
-# Check for duplicate IP addresses in WEXTOR study data
+# Check for duplicate IP addresses
 
 `ip_check()` identifies potential duplicate participations in a dataset
 by checking for repeated IP addresses. Cases with duplicated IPs are

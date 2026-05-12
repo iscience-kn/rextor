@@ -1,4 +1,4 @@
-# Get file path to `BiFiX_data_raw.csv` file
+# Get file path to example data file
 
 This function makes the example data from the BiFiX study (submitted for
 publication in BRM) easy to access.

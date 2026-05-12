@@ -21,7 +21,7 @@ theme_wob(max_font_size = 14, contrast = "high")
 
   Character to indicate the choice of color palette depending on the
   desired contrast. Defaults to `"high"`. Should be one of
-  `"max", "high", "medium", "low", "pink" or "rex"`.
+  `"max", "high", "medium", "low", "pink"` or `"rex"`.
 
 ## Value
 

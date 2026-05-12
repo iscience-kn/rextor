@@ -11,7 +11,7 @@ R has many available options of reading in this type of data, which can make it 
 
     <a class="navbar-brand me-2" href="../index.html">rextor</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.0000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,6 +24,7 @@ R has many available options of reading in this type of data, which can make it 
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/big-five-example.html">Big Five Example - BiFiX</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
       </ul></div>
@@ -82,19 +83,11 @@ It will give you your original data and also make the start and end time of each
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">url</span><span class="op">&lt;-</span><span class="st">"https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv"</span></span></span>
-<span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">read_WEXTOR</span><span class="op">(</span><span class="va">url</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Failed to open 'https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv': The requested URL returned error: 404</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> cannot open the connection</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># OR, a bit simpler</span></span></span>
 <span class="r-in"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">read_WEXTOR</span><span class="op">(</span><span class="fu"><a href="path_to_file.html">path_to_file</a></span><span class="op">(</span><span class="st">"BiFiX_data_raw.csv"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># If you don't need the validation variable, try</span></span></span>
-<span class="r-in"><span><span class="va">data_noval</span><span class="op">&lt;-</span><span class="fu">read_WEXTOR</span><span class="op">(</span><span class="va">url</span>,</span></span>
+<span class="r-in"><span><span class="va">data_noval</span><span class="op">&lt;-</span><span class="fu">read_WEXTOR</span><span class="op">(</span><span class="fu"><a href="path_to_file.html">path_to_file</a></span><span class="op">(</span><span class="st">"BiFiX_data_raw.csv"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                       keep_validation <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Failed to open 'https://raw.githubusercontent.com/iscience-kn/rextor/refs/heads/main/data/BiFiX_data_raw.csv': The requested URL returned error: 404</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> cannot open the connection</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -103,7 +96,7 @@ It will give you your original data and also make the start and end time of each
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Annika Tave Overlander, Ulf-Dietrich Reips.</p>
+  <p>Developed by Annika Tave Overlander.</p>
 </div>
 
 <div class="pkgdown-footer-right">
