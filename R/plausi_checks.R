@@ -164,7 +164,7 @@ You can choose `sess_length_check` and `ip_check`.")
     if(is.null(min_pages)){
       cat("Please define the minimum number of pages that a participant of your study should have visited for a plausible participation.")
     } else if(check_sess_length){
-      plausi <- sess_length_check(plausi)
+      plausi <- sess_length_check(plausi, min_pages)
     }
     
     if(check_ip){
