@@ -9,12 +9,7 @@ addresses indicate duplicate participation.
 ## Usage
 
 ``` r
-plausicheck(
-  dataframe,
-  min_pages = 6,
-  check_sess_length = TRUE,
-  check_ip = TRUE
-)
+plausicheck(dataframe, min_pages, check_sess_length = TRUE, check_ip = TRUE)
 ```
 
 ## Arguments
@@ -31,7 +26,6 @@ plausicheck(
 
   Numeric. The minimum number of pages a participant must have visited
   in the study for their participation to be considered plausible.
-  Defaults to `6`.
 
 - check_sess_length:
 
@@ -60,20 +54,13 @@ before the plausibility checks are applied.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-plausicheck(my_data)
-
-plausicheck(
-  dataframe = my_data,
-  min_pages = 8,
-  sess_length_check = TRUE,
-  ip_check = FALSE
-)
-} # }
 
 data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 # The example data does not contain real IPs (data protection), so we will use simulate ones
 data$ip <- sample(1:1000, nrow(data), replace = TRUE)
 
-plausi_data <- plausicheck(data) # keeps all defaults i.e. runs all available checks
+plausi_data <- plausicheck(dataframe = data,
+  min_pages = 6,
+  check_sess_length = TRUE,
+  check_ip = TRUE)
 ```

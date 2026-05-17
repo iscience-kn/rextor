@@ -15,7 +15,7 @@ informed_consent(dataframe, varname = "informedconsent")
 
 - dataframe:
 
-  A dataframe of data collected with WEXTOR
+  A dataframe of data collected with 'WEXTOR'
 
 - varname:
 
@@ -30,7 +30,7 @@ consent box
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+
+data <- data.frame(informedconsent = c("checked", "not checked", "checked"))
 informed_only <- informed_consent(data) 
-} # }
 ```

@@ -25,9 +25,9 @@
 - [`plausicheck()`](https://iscience-kn.github.io/rextor/reference/plausicheck.md)
   : Plausibility check on WEXTOR study data
 - [`read_WEXTOR()`](https://iscience-kn.github.io/rextor/reference/read_WEXTOR.md)
-  : Read WEXTOR Data
+  : Read 'WEXTOR' Data
 - [`removepref()`](https://iscience-kn.github.io/rextor/reference/removepref.md)
-  : Remove WEXTOR variable name prefixes (automatic)
+  : Remove 'WEXTOR' variable name prefixes (automatic)
 - [`scale_rextor()`](https://iscience-kn.github.io/rextor/reference/scale_rextor.md)
   : Coloring Scale for Data Visualization
 - [`serious_check()`](https://iscience-kn.github.io/rextor/reference/serious_check.md)

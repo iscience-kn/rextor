@@ -18,7 +18,8 @@ check_ok(data, col)
 
 - col:
 
-  A character string specifying the column name to check.
+  A character string specifying the column name to check for "ok"
+  entries (case-sensitive).
 
 ## Value
 
@@ -33,7 +34,7 @@ function.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
-check_ok(my_data, "check_ip")
-} # }
+example_df <- data.frame(check_ip = c("ok", "nope", "ok", "OK"))
+check_ok(example_df, "check_ip")
+#> [1]  TRUE FALSE  TRUE FALSE
 ```

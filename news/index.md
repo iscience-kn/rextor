@@ -1,5 +1,11 @@
 # Changelog
 
+## rextor 1.1.0
+
+- Minor bug fixes
+- Improvement of function examples and documentation as per CRAN team
+  request
+
 ## rextor 1.0.0
 
 - Initial CRAN submission.

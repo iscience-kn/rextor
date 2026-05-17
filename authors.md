@@ -10,13 +10,13 @@
 
 ## Citation
 
-Overlander A (2026). *rextor: Prepare WEXTOR Data*. R package version
-1.0.0, <https://iscience-kn.github.io/rextor/>.
+Overlander A (2026). *rextor: Prepare 'WEXTOR' Data*. R package version
+1.1.0, <https://iscience-kn.github.io/rextor/>.
 
     @Manual{,
-      title = {rextor: Prepare WEXTOR Data},
+      title = {rextor: Prepare 'WEXTOR' Data},
       author = {Annika Tave Overlander},
       year = {2026},
-      note = {R package version 1.0.0},
+      note = {R package version 1.1.0},
       url = {https://iscience-kn.github.io/rextor/},
     }

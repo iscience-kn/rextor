@@ -29,9 +29,9 @@ prefix.
 
 ``` r
 bla <- tibble::tibble(x_ar = 1:5, y_ar = 6:10)
-blo <- namepref(bla, "var")
+blo <- namepref0(bla, "var")
 names(bla)
 #> [1] "x_ar" "y_ar"
 names(blo)
-#> [1] "x_ar" "y_ar"
+#> [1] "varx_ar" "vary_ar"
 ```

@@ -1,4 +1,4 @@
-# Remove WEXTOR variable name prefixes (automatic)
+# Remove 'WEXTOR' variable name prefixes (automatic)
 
 This function strips the old prefix from the server variable names of
 the dataframe. It identifies such variables that start with ".wx.#."

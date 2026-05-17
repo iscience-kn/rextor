@@ -21,6 +21,12 @@ This function is adapted from `palmerpenguins` (which is adapted from
   Name of file in quotes with extension; `"BiFiX_data_raw.csv"` will
   work. If `NULL`, the example file will be listed.
 
+## Value
+
+Gives the path to the example file included in the package. Meant for
+use in
+[`read_WEXTOR()`](https://iscience-kn.github.io/rextor/reference/read_WEXTOR.md).
+
 ## Examples
 
 ``` r

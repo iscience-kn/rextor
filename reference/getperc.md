@@ -25,7 +25,7 @@ getperc(data, var, val)
 
 ## Value
 
-Returns the percentage of value val in relation to all values of var
+Returns the percentage of value `val` in relation to all values of `var`
 
 ## Examples
 
