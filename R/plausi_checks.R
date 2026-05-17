@@ -116,7 +116,7 @@ ip_check <- function(dataframe){
 #' webpages in the study & `session_length` for the overall time each participant spent on the study (if
 #' session length is to be checked) and `ip` for participants' IP addresses (if IP is to be checked)).
 #' @param min_pages Numeric. The minimum number of pages a participant must have
-#'   visited  in the study for their participation to be considered plausible. Defaults to `6`.
+#'   visited  in the study for their participation to be considered plausible.
 #' @param check_sess_length Logical. Should the session length plausibility check
 #'   be performed? Defaults to `TRUE`.
 #' @param check_ip Logical. Should the IP address plausibility check be performed?
@@ -130,29 +130,23 @@ ip_check <- function(dataframe){
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' plausicheck(my_data)
-#'
-#' plausicheck(
-#'   dataframe = my_data,
-#'   min_pages = 8,
-#'   sess_length_check = TRUE,
-#'   ip_check = FALSE
-#' )
-#' }
 #' 
 #' data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 #' # The example data does not contain real IPs (data protection), so we will use simulate ones
 #' data$ip <- sample(1:1000, nrow(data), replace = TRUE)
 #' 
-#' plausi_data <- plausicheck(data) # keeps all defaults i.e. runs all available checks
+#' plausi_data <- plausicheck(dataframe = data,
+#'   min_pages = 6,
+#'   check_sess_length = TRUE,
+#'   check_ip = TRUE)
+#' 
 plausicheck <- function(dataframe,
-                        min_pages = 6,
+                        min_pages,
                         check_sess_length = TRUE,
                         check_ip = TRUE){
   # If no Plausicheck is selected, exit and select at least one
   if(!any(c(check_sess_length, check_ip))){
-    cat("Please select at least one plausibility check to be performed! 
+    stop("Please select at least one plausibility check to be performed! 
 You can choose `sess_length_check` and `ip_check`.")
   } else{
     if(any(grepl(".wx.", names(dataframe)))){
@@ -162,7 +156,7 @@ You can choose `sess_length_check` and `ip_check`.")
     }
     
     if(is.null(min_pages)){
-      cat("Please define the minimum number of pages that a participant of your study should have visited for a plausible participation.")
+      warning("Please define the minimum number of pages that a participant of your study should have visited for a plausible participation, the default is 6.")
     } else if(check_sess_length){
       plausi <- sess_length_check(plausi, min_pages)
     }
@@ -170,22 +164,6 @@ You can choose `sess_length_check` and `ip_check`.")
     if(check_ip){
       plausi <- ip_check(plausi)
     }
-    
-    # plausi$check_plausibility <- ifelse(
-    #   case_when(exists("check_page", where=plausi) & plausi$check_page == "ok" ~ TRUE,
-    #             !exists("check_page", where=plausi) ~ TRUE,
-    #             exists("check_page", where=plausi) & plausi$check_page != "ok" ~ FALSE) 
-    #   &
-    #     case_when(exists("check_sess_length", where=plausi) & plausi$check_sess_length == "ok" ~ TRUE,
-    #               !exists("check_sess_length", where=plausi) ~ TRUE,
-    #               exists("check_sess_length", where=plausi) & plausi$check_sess_length != "ok" ~ FALSE) 
-    #   &
-    #     case_when(exists("check_ip", where=plausi) & plausi$check_ip == "ok" ~ TRUE,
-    #               !exists("check_ip", where=plausi) ~ TRUE,
-    #               exists("check_ip", where=plausi) & plausi$check_ip != "ok" ~ FALSE),
-    #   # plausi$check_page == "ok" & plausi$check_sess_length == "ok" & plausi$check_ip == "ok",
-    #                                     "all ok",
-    #                                     "exclude")
     
     plausi$check_plausibility <- ifelse(check_ok(plausi, "check_page") &
                                           check_ok(plausi, "check_sess_length") &

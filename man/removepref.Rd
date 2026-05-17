@@ -2,7 +2,7 @@
 % Please edit documentation in R/removepref.R
 \name{removepref}
 \alias{removepref}
-\title{Remove WEXTOR variable name prefixes (automatic)}
+\title{Remove 'WEXTOR' variable name prefixes (automatic)}
 \usage{
 removepref(dataframe)
 }

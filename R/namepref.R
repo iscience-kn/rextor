@@ -19,16 +19,26 @@
 namepref <- function(dataframe, pref_old, pref_new){
   value <- stripped <- new_names <- NULL
   
+  namedf <- data.frame(value = names(dataframe))
+  namedf$stripped <- ifelse(startsWith(namedf$value, pref_old), 
+                            substr(namedf$value, (nchar(pref_old)+1), nchar(namedf$value)), 
+                            namedf$value)
+  namedf$new_names <- ifelse(startsWith(namedf$value, pref_old), 
+                            paste0(pref_new, namedf$stripped), 
+                            namedf$value)
+  
+  names(dataframe) <- namedf$new_names
+  
  # pref_old and pref_new must be character strings, dataframe must be a dataframe
-  namedf <- tibble::as_tibble(names(dataframe))  |>
-    dplyr::mutate(stripped = ifelse(startsWith(value, pref_old), 
-                                    substr(value, (nchar(pref_old)+1), nchar(value)), 
-                                    value),
-                  new_names = ifelse(startsWith(value, pref_old), 
-                                     paste0(pref_new, stripped), 
-                                     value))
-
-  names(dataframe) <- namedf |> dplyr::pull(new_names)
+  # namedf <- tibble::as_tibble(names(dataframe))  |>
+  #   dplyr::mutate(stripped = ifelse(startsWith(value, pref_old), 
+  #                                   substr(value, (nchar(pref_old)+1), nchar(value)), 
+  #                                   value),
+  #                 new_names = ifelse(startsWith(value, pref_old), 
+  #                                    paste0(pref_new, stripped), 
+  #                                    value))
+  # 
+  # names(dataframe) <- namedf |> dplyr::pull(new_names)
   return(dataframe)
 }
 
@@ -45,7 +55,7 @@ namepref <- function(dataframe, pref_old, pref_new){
 #'
 #' @examples
 #' bla <- tibble::tibble(x_ar = 1:5, y_ar = 6:10)
-#' blo <- namepref(bla, "var")
+#' blo <- namepref0(bla, "var")
 #' names(bla)
 #' names(blo)
 #'
@@ -53,9 +63,11 @@ namepref0 <- function(dataframe, pref_new){
   value <- new_names <- NULL
   
   # pref_new must be a character string, dataframe must be a dataframe
-  namedf <- tibble::as_tibble(names(dataframe))  |>
-    dplyr::mutate(new_names = paste0(pref_new, value))
+  namedf <- data.frame(value = names(dataframe))
   
-  names(dataframe) <- namedf |> dplyr::pull(new_names)
+  namedf$new_names <- paste0(pref_new, namedf$value)
+  
+  names(dataframe) <- namedf$new_names
+  
   return(dataframe)
 }

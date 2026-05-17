@@ -1,12 +1,12 @@
 Package: rextor
-Title: Prepare WEXTOR Data
-Version: 1.0.0
+Title: Prepare 'WEXTOR' Data
+Version: 1.1.0
 Depends: R (>= 4.1.0)
 Authors@R: c(person("Annika Tave", "Overlander", role = c("aut","cre"), email = "annika-tave.overlander@uni.kn",
              comment = c(ORCID = "0009-0006-8373-4086")),
             person("Ulf-Dietrich", "Reips", role = c("ths", "cph"), 
               comment = c(ORCID = "0000-0002-1566-4745")))
-Description: Facilitate data preparation for data collected on WEXTOR <https://wextor.eu>, created by Reips and Neuhaus (2002). Perform plausibility and other checks and make use of cool color palettes and themes for data visualization! Reips, U.-D., & Neuhaus, C. (2002). WEXTOR: A Web-based tool for generating and visualizing experimental designs and procedures. _Behavior Research Methods, 34_(2), 234-240. <doi:10.3758/bf03195449>.
+Description: Facilitate data preparation for data collected on 'WEXTOR' <https://wextor.eu>, created by Reips and Neuhaus (2002) <doi:10.3758/bf03195449>. Perform plausibility and other checks and make use of cool color palettes and themes for data visualization.
 License: GPL (>= 3)
 Date: 2026-05-06
 Encoding: UTF-8

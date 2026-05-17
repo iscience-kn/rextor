@@ -18,7 +18,7 @@ Filtered data
 }
 \description{
 Filter your data frame by your item for the "seriousness check".
-If the data comes from WEXTOR with no previous changes to the automatically created variable,
+If the data comes from 'WEXTOR' with no previous changes to the automatically created variable,
 you will be able to accept all defaults in this function and simply input the data frame.
 }
 \examples{

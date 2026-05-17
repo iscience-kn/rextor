@@ -14,7 +14,7 @@ getperc(data, var, val)
 \item{val}{A value of variable var of which to get the percentage, also in quotes}
 }
 \value{
-Returns the percentage of value val in relation to all values of var
+Returns the percentage of value \code{val} in relation to all values of \code{var}
 }
 \description{
 Get percentage of a value

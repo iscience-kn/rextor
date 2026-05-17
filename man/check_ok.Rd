@@ -9,7 +9,7 @@ check_ok(data, col)
 \arguments{
 \item{data}{A data frame containing plausibility check variables.}
 
-\item{col}{A character string specifying the column name to check.}
+\item{col}{A character string specifying the column name to check for "ok" entries (case-sensitive).}
 }
 \value{
 A logical vector of length \code{nrow(data)}.
@@ -22,7 +22,6 @@ If the column does not exist in the data, all cases are treated as passing.
 Used inside the \code{plausicheck()} function.
 }
 \examples{
-\dontrun{
-check_ok(my_data, "check_ip")
-}
+example_df <- data.frame(check_ip = c("ok", "nope", "ok", "OK"))
+check_ok(example_df, "check_ip")
 }

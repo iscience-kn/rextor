@@ -14,6 +14,9 @@ path_to_file(path = NULL)
 \code{"BiFiX_data_raw.csv"} will work.
 If \code{NULL}, the example file will be listed.}
 }
+\value{
+Gives the path to the example file included in the package. Meant for use in \code{read_WEXTOR()}.
+}
 \description{
 This function makes the example data from the BiFiX study (submitted for publication in BRM) easy to access.
 }

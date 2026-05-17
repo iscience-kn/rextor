@@ -4,12 +4,7 @@
 \alias{plausicheck}
 \title{Plausibility check on WEXTOR study data}
 \usage{
-plausicheck(
-  dataframe,
-  min_pages = 6,
-  check_sess_length = TRUE,
-  check_ip = TRUE
-)
+plausicheck(dataframe, min_pages, check_sess_length = TRUE, check_ip = TRUE)
 }
 \arguments{
 \item{dataframe}{A data frame containing the study data (needs to contain variables \code{page_trail} for the trail of
@@ -17,7 +12,7 @@ webpages in the study & \code{session_length} for the overall time each particip
 session length is to be checked) and \code{ip} for participants' IP addresses (if IP is to be checked)).}
 
 \item{min_pages}{Numeric. The minimum number of pages a participant must have
-visited  in the study for their participation to be considered plausible. Defaults to \code{6}.}
+visited  in the study for their participation to be considered plausible.}
 
 \item{check_sess_length}{Logical. Should the session length plausibility check
 be performed? Defaults to \code{TRUE}.}
@@ -44,20 +39,14 @@ If WEXTOR prefixes are detected in the variable names, they are removed before
 the plausibility checks are applied.
 }
 \examples{
-\dontrun{
-plausicheck(my_data)
-
-plausicheck(
-  dataframe = my_data,
-  min_pages = 8,
-  sess_length_check = TRUE,
-  ip_check = FALSE
-)
-}
 
 data <- read_WEXTOR(path_to_file("BiFiX_data_raw.csv"))
 # The example data does not contain real IPs (data protection), so we will use simulate ones
 data$ip <- sample(1:1000, nrow(data), replace = TRUE)
 
-plausi_data <- plausicheck(data) # keeps all defaults i.e. runs all available checks
+plausi_data <- plausicheck(dataframe = data,
+  min_pages = 6,
+  check_sess_length = TRUE,
+  check_ip = TRUE)
+
 }

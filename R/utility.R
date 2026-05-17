@@ -25,7 +25,7 @@ getmode <- function(v) {
 #' @param var A variable in the dataframe, written as a character in quotes, e.g. "var"
 #' @param val A value of variable var of which to get the percentage, also in quotes
 #'
-#' @return Returns the percentage of value val in relation to all values of var
+#' @return Returns the percentage of value `val` in relation to all values of `var`
 #' @export
 #'
 #' @examples
@@ -54,6 +54,8 @@ getperc <- function(data, var, val){
 #' @param path Name of file in quotes with extension;
 #' `"BiFiX_data_raw.csv"` will work.
 #' If `NULL`, the example file will be listed.
+#' 
+#' @return Gives the path to the example file included in the package. Meant for use in `read_WEXTOR()`.
 #' @export
 #' @examples
 #' path_to_file()
@@ -77,16 +79,15 @@ path_to_file <- function(path = NULL) {
 #' Used inside the `plausicheck()` function.
 #'
 #' @param data A data frame containing plausibility check variables.
-#' @param col A character string specifying the column name to check.
+#' @param col A character string specifying the column name to check for "ok" entries (case-sensitive).
 #'
 #' @returns A logical vector of length `nrow(data)`.
 #'
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' check_ok(my_data, "check_ip")
-#' }
+#' example_df <- data.frame(check_ip = c("ok", "nope", "ok", "OK"))
+#' check_ok(example_df, "check_ip")
 check_ok <- function(data, col) {
   if (col %in% names(data)) {
     data[[col]] == "ok"

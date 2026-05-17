@@ -7,7 +7,7 @@
 informed_consent(dataframe, varname = "informedconsent")
 }
 \arguments{
-\item{dataframe}{A dataframe of data collected with WEXTOR}
+\item{dataframe}{A dataframe of data collected with 'WEXTOR'}
 
 \item{varname}{character. Variable name of informed consent variable. Defaults to "informedconsent".}
 }
@@ -19,8 +19,8 @@ One of the best practices in data collection is including and informed consent q
 With this function you can automatically filter out rows where participants did not explicitly consent to their data being used.
 }
 \examples{
-\dontrun{
+
+data <- data.frame(informedconsent = c("checked", "not checked", "checked"))
 informed_only <- informed_consent(data) 
-}
 
 }

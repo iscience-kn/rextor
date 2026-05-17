@@ -19,7 +19,7 @@ This function adds the new prefix and changes the dataframe's names to the new o
 }
 \examples{
 bla <- tibble::tibble(x_ar = 1:5, y_ar = 6:10)
-blo <- namepref(bla, "var")
+blo <- namepref0(bla, "var")
 names(bla)
 names(blo)
 

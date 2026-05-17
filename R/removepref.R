@@ -1,4 +1,4 @@
-#' Remove WEXTOR variable name prefixes (automatic)
+#' Remove 'WEXTOR' variable name prefixes (automatic)
 #'
 #' This function strips the old prefix from the server variable names of the dataframe.
 #' It identifies such variables that start with ".wx.#." where # stands for any number, or simply ".wx." and then removes
@@ -21,15 +21,27 @@ removepref <- function(dataframe){
   pref_old <- ".wx.\\d+."
   
   # dataframe must be a dataframe
-  namedf <- tibble::as_tibble(names(dataframe))  |>
-    dplyr::mutate(stripped = ifelse(grepl(pref_old, value),
-                                    substr(value, 7, nchar(value)),
-                                    value), 
-                  new_names = ifelse(startsWith(stripped, ".wx."),
-                                     substr(stripped, 5, nchar(stripped)),
-                                     stripped)
-    )
+  namedf <- data.frame(value = names(dataframe))
+  namedf$stripped <- ifelse(grepl(pref_old, namedf$value),
+                            substr(namedf$value, 7, nchar(namedf$value)),
+                            namedf$value)
+  namedf$new_names <- ifelse(startsWith(namedf$stripped, ".wx."),
+                             substr(namedf$stripped, 5, nchar(namedf$stripped)),
+                             namedf$stripped)
   
-  names(dataframe) <- namedf |> dplyr::pull(new_names)
+  names(dataframe) <- namedf$new_names
+  
+  
+  
+  # namedf <- tibble::as_tibble(names(dataframe))  |>
+  #   dplyr::mutate(stripped = ifelse(grepl(pref_old, value),
+  #                                   substr(value, 7, nchar(value)),
+  #                                   value), 
+  #                 new_names = ifelse(startsWith(stripped, ".wx."),
+  #                                    substr(stripped, 5, nchar(stripped)),
+  #                                    stripped)
+  #   )
+  # 
+  # names(dataframe) <- namedf |> dplyr::pull(new_names)
   return(dataframe)
 }

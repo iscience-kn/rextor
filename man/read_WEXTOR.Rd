@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_WEXTOR.R
 \name{read_WEXTOR}
 \alias{read_WEXTOR}
-\title{Read WEXTOR Data}
+\title{Read 'WEXTOR' Data}
 \usage{
 read_WEXTOR(filepath, keep_validation = TRUE)
 }
@@ -15,21 +15,21 @@ read_WEXTOR(filepath, keep_validation = TRUE)
 The WEXTOR data as an R data object.
 }
 \description{
-With this function, you can easily read in your WEXTOR generated data.
+With this function, you can easily read in your 'WEXTOR' generated data.
 By default, it will be exported as a "CSV" file, which stands for "comma-separated values".
 R has many available options of reading in this type of data, which can make it hard to navigate which one to use - especially for beginners.
 }
 \details{
 In the \code{\link[=read_WEXTOR]{read_WEXTOR()}} function, you just need to provide the \code{filepath}, i.e. the location of the CSV data file
-that you downloaded from WEXTOR.
+that you downloaded from 'WEXTOR'.
 If you want, you can already decided whether to keep the first column containing a so-called validation variable, but you don't have to.
-With no other input, rextor will keep the variable for you.
+With no other input, \code{rextor} will keep the variable for you.
 You can explicitly set \code{keep_validation} to FALSE if you like your data neat and do not need this extra measure.
 The usage is explained in the examples down below using the open source BiFiX data with psychological Big Five personality traits.
 
-This function prepares the WEXTOR data so that it is readable by both R and you as a human.
+This function prepares the 'WEXTOR' data so that it is readable by both R and you as a human.
 It will give you your original data and also make the start and end time of each participation easier to read and work with later
-(by default, WEXTOR will return these values as date and time separately, cluttering your dataset).
+(by default, 'WEXTOR' will return these values as date and time separately, cluttering your dataset).
 }
 \examples{
 
