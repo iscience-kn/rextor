@@ -1,6 +1,6 @@
 Package: rextor
 Title: Prepare 'WEXTOR' Data
-Version: 1.1.0
+Version: 1.1.1
 Depends: R (>= 4.1.0)
 Authors@R: c(person("Annika Tave", "Overlander", role = c("aut","cre"), email = "annika-tave.overlander@uni.kn",
              comment = c(ORCID = "0009-0006-8373-4086")),

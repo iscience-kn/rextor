@@ -4,7 +4,8 @@
 #' a discrete or continuous scale depending on the data type of the mapping object.
 #' It can also be used for both `color` and `fill` aesthetics by defining `aesthetic` accordingly directly inside the function!
 #'
-#' @param pal Color palette. Use either numbers from 1 to X or one of the names: `'arby'`, `'cute'`...
+#' @param pal Color palette. Use either numbers from 1 to 9 or one of the names: 
+#' `'arby'`, `'cute'`, `'wextor'`, `'dualtone'`, `'colorful'`, `'protanomaly'`, `'forest'`, `'hadestown'`, `'neon'`
 #' @param direction Direction of the color palette. Keep blank or use 1 for the default direction or use -1 to reverse the colors.
 #' @param aesthetic Which aesthetic to use the scale on; either `color` or `fill`, defaults to `color`.
 #' @param ... Other common scale parameters.

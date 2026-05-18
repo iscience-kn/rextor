@@ -7,7 +7,8 @@
 scale_rextor(pal = "cute", direction = 1, aesthetic = "color", ...)
 }
 \arguments{
-\item{pal}{Color palette. Use either numbers from 1 to X or one of the names: \code{'arby'}, \code{'cute'}...}
+\item{pal}{Color palette. Use either numbers from 1 to 9 or one of the names:
+\code{'arby'}, \code{'cute'}, \code{'wextor'}, \code{'dualtone'}, \code{'colorful'}, \code{'protanomaly'}, \code{'forest'}, \code{'hadestown'}, \code{'neon'}}
 
 \item{direction}{Direction of the color palette. Keep blank or use 1 for the default direction or use -1 to reverse the colors.}
 
