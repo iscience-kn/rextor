@@ -16,8 +16,9 @@ scale_rextor(pal = "cute", direction = 1, aesthetic = "color", ...)
 
 - pal:
 
-  Color palette. Use either numbers from 1 to X or one of the names:
-  `'arby'`, `'cute'`...
+  Color palette. Use either numbers from 1 to 9 or one of the names:
+  `'arby'`, `'cute'`, `'wextor'`, `'dualtone'`, `'colorful'`,
+  `'protanomaly'`, `'forest'`, `'hadestown'`, `'neon'`
 
 - direction:
 
