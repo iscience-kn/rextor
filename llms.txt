@@ -1,4 +1,4 @@
-# rextor [![](reference/figures/rextor_logo.png)](https://iscience-kn.github.io/rextor/)
+# rextor [![rextor logo showing a cute green t-rex drawn with geometric shapes](reference/figures/rextor_logo.png)](https://iscience-kn.github.io/rextor/)
 
 rextor is an R package to facilitate data preparation for data collected
 on WEXTOR. It offers functions to read in the data, help visualize the

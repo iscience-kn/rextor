@@ -1,6 +1,13 @@
 # Changelog
 
+## development version 1.1.1
+
+- Added GitHub link to Pages.
+- More coming soon…
+
 ## rextor 1.1.0
+
+CRAN release: 2026-05-21
 
 - Minor bug fixes
 - Improvement of function examples and documentation as per CRAN team
@@ -14,5 +21,4 @@
 
 ## rextor 0.0.0.9
 
-- Development version
 - Prepare for initial CRAN submission.
