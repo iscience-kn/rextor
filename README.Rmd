@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# rextor <a href='https://iscience-kn.github.io/rextor/'><img src='man/figures/rextor_logo.png' align="right" /></a>
+# rextor <a href='https://iscience-kn.github.io/rextor/'><img src='man/figures/rextor_logo.png' align="right" alt="rextor logo showing a cute green t-rex drawn with geometric shapes"/></a>
 
 <!-- height="138" -->
  
@@ -56,6 +56,7 @@ It is an online experiment building tool which relies on standards of web-based 
 
 That means, generating studies to collect data is easy but analyzing that data in R might be tricky.
 WEXTOR data comes in a specific csv^comma-separated-values format and figuring out how to properly read that data into R can be difficult to do when starting out your R journey. 
+
 
 Luckily, with rextor, reading in that data becomes easy! 
 We will use an openly available data set on personality data collected in three different conditions^For more information on the data, see [github.com/iscience-kn/BiFiX](https://github.com/iscience-kn/BiFiX).

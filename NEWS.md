@@ -1,3 +1,8 @@
+# development version 1.1.1
+
+* Added GitHub link to Pages.
+* More coming soon...
+
 # rextor 1.1.0
 
 * Minor bug fixes
@@ -10,5 +15,4 @@
 
 # rextor 0.0.0.9
 
-* Development version
 * Prepare for initial CRAN submission.

@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rextor <a href='https://iscience-kn.github.io/rextor/'><img src='man/figures/rextor_logo.png' align="right" /></a>
+# rextor <a href='https://iscience-kn.github.io/rextor/'><img src='man/figures/rextor_logo.png' align="right" alt="rextor logo showing a cute green t-rex drawn with geometric shapes"/></a>
 
 <!-- height="138" -->
 
